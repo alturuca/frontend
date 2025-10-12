@@ -1,0 +1,51 @@
+.inventario-page {
+  padding: 2rem;
+  font-family: 'Segoe UI', sans-serif;
+  background-color: #f4f6f8;
+}
+
+.inventario-page h2 {
+  margin-bottom: 1.5rem;
+  color: #2c3e50;
+}
+.header-container{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  
+}
+.header-container-botones{
+  display: flex;
+  gap: 10px;
+
+}
+
+.inventario-table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: #fff;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+.inventario-table th,
+.inventario-table td {
+  padding: 1rem;
+  border-bottom: 1px solid #eee;
+  text-align: left;
+}
+
+.inventario-table th {
+  background-color: #0078d4;
+  color: white;
+}
+
+.inventario-table tr.stock-bajo td {
+  background-color: #fff3cd;
+}
+
+.inventario-table tr.sin-stock td {
+  background-color: #f8d7da;
+}
