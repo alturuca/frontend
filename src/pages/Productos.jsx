@@ -1,10 +1,11 @@
-// src/pages/Productos.jsx
 import React, { useState, useEffect } from 'react';
 import ProductForm from '../components/ProductForm';
 import './Productos.css';
 import BotonCerrarSesion from '../components/BotonCerrarSesion';
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
+const API_URL = 'http://127.0.0.1:8000/api/v1/productos/';
 
 const Productos = () => {
   const [productos, setProductos] = useState([]);
@@ -12,23 +13,43 @@ const Productos = () => {
   const [productoActual, setProductoActual] = useState(null);
   const navigate = useNavigate();
 
-  // Simulación de carga inicial
+  const fetchProductos = async () => {
+    try {
+      const res = await axios.get(API_URL, {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem('access_token')}`,
+        },
+      });
+      setProductos(res.data);
+    } catch (error) {
+      console.error('Error al obtener productos:', error);
+    }
+  };
+
   useEffect(() => {
-    const productosMock = [
-      { id: 1, plu: 456789, nombre: 'Botella PET 500ml', descripcion: 'tipo personal', costo: 1200, venta: 1600, stock: 50 },
-      { id: 2, plu: 890098, nombre: 'Papel térmico', descripcion: 'transparente', costo: 800, venta:1000, stock: 20 },
-    ];
-    setProductos(productosMock);
+    fetchProductos();
   }, []);
 
-  const handleGuardar = (producto) => {
-    if (modoEdicion) {
-      setProductos(productos.map(p => p.id === producto.id ? producto : p));
+  const handleGuardar = async (producto) => {
+    try {
+      if (modoEdicion) {
+        await axios.put(`${API_URL}${producto.sku}/`, producto, {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem('access_token')}`,
+          },
+        });
+      } else {
+        await axios.post(API_URL, producto, {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem('access_token')}`,
+          },
+        });
+      }
       setModoEdicion(false);
       setProductoActual(null);
-    } else {
-      const nuevoId = productos.length + 1;
-      setProductos([...productos, { ...producto, id: nuevoId }]);
+      fetchProductos();
+    } catch (error) {
+      console.error('Error al guardar producto:', error);
     }
   };
 
@@ -37,35 +58,40 @@ const Productos = () => {
     setProductoActual(producto);
   };
 
-  const handleEliminar = (id) => {
+  const handleEliminar = async (sku) => {
     const confirmacion = window.confirm('¿Eliminar este producto?');
     if (confirmacion) {
-      setProductos(productos.filter(p => p.id !== id));
+      try {
+        await axios.delete(`${API_URL}${sku}/`, {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem('access_token')}`,
+          },
+        });
+        fetchProductos();
+      } catch (error) {
+        console.error('Error al eliminar producto:', error);
+      }
     }
   };
 
   const handleCerrarSesion = () => {
-  navigate('/');
+    navigate('/');
+  };
 
-};
-
-const handleIrTablero = () => {
-  navigate('/dashboard');
-
-};
-
+  const handleIrTablero = () => {
+    navigate('/dashboard');
+  };
 
   return (
     <div className="productos-page">
-      <div className='header-container'>      
+      <div className="header-container">
         <h2>Gestión de Productos</h2>
-        <section className='header-container-botones'>
-            <BotonCerrarSesion texto="TABLERO" onClick={handleIrTablero} />
-            <BotonCerrarSesion texto="CERRAR SESION" onClick={handleCerrarSesion} />
+        <section className="header-container-botones">
+          <BotonCerrarSesion texto="TABLERO" onClick={handleIrTablero} />
+          <BotonCerrarSesion texto="CERRAR SESION" onClick={handleCerrarSesion} />
         </section>
       </div>
-      
-      
+
       <ProductForm
         onGuardar={handleGuardar}
         producto={productoActual}
@@ -75,28 +101,27 @@ const handleIrTablero = () => {
       <table className="productos-table">
         <thead>
           <tr>
-            <th>Plu</th>
+            <th>SKU</th>
             <th>Nombre</th>
             <th>Descripción</th>
-            <th>Costo</th>
-            <th>Venta</th>
+            <th>Precio Compra</th>
+            <th>Precio Venta</th>
             <th>Stock</th>
             <th>Acciones</th>
           </tr>
         </thead>
         <tbody>
-          {productos.map(producto => (
-            <tr key={producto.id}>
-              <td>{producto.plu}</td>
+          {productos.map((producto) => (
+            <tr key={producto.sku}>
+              <td>{producto.sku}</td>
               <td>{producto.nombre}</td>
               <td>{producto.descripcion}</td>
-              <td>${producto.costo}</td>
-              <td>{producto.venta}</td>
+              <td>${parseFloat(producto.precio_compra).toFixed(2)}</td>
+              <td>${parseFloat(producto.precio_venta).toFixed(2)}</td>
               <td>{producto.stock}</td>
-              
               <td>
                 <button onClick={() => handleEditar(producto)}>✏️</button>
-                <button onClick={() => handleEliminar(producto.id)}>🗑️</button>
+                <button onClick={() => handleEliminar(producto.sku)}>🗑️</button>
               </td>
             </tr>
           ))}
