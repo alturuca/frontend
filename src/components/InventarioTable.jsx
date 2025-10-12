@@ -11,6 +11,7 @@ const InventarioTable = ({ productos }) => {
           <th>descripcion</th>
           <th>Precio Venta</th>
           <th>Precio Compra</th>
+           <th>Cantidad</th>
           <th>Estado</th>
         </tr>
       </thead>
@@ -20,8 +21,9 @@ const InventarioTable = ({ productos }) => {
             <td>{p.sku}</td>
             <td>{p.nombre}</td>
             <td>{p.descripcion}</td>
-            <td>${p.precioVenta}</td>
-            <td>${p.precioCompra}</td>
+            <td>${p.precio_venta}</td>
+            <td>${p.precio_compra}</td>
+            <td>{p.stock}</td>
             <td>
               {p.stock === 0
                 ? 'Sin stock'

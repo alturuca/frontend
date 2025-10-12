@@ -8,8 +8,11 @@ import Productos from './pages/Productos';
 import Compras from './pages/Compras';
 import Usuarios from './pages/Usuarios';
 import Reportes from './pages/Reportes';
+import Inventario from './pages/Inventario';
+/*import FormularioUsuario from './components/FormularioUsuario';*/
 
 import './App.css'
+import ProductForm from './components/ProductForm';
 
 
 
@@ -26,6 +29,7 @@ function App() {
         <Route path="/compras" element={<Compras/>} />
         <Route path="/reportes" element={<Reportes/>} />
         <Route path="/usuarios" element={<Usuarios/>} />
+        <Route path="/inventario" element={<Inventario/>} />
       </Routes>
     </Router>
 
