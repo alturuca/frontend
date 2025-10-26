@@ -11,9 +11,23 @@ const Ventas = () => {
   const navigate = useNavigate();
 
   const handleGuardarVenta = (nuevaVenta) => {
-    const nuevaId = ventas.length + 1;
-    setVentas([...ventas, { ...nuevaVenta, id: nuevaId }]);
-  };
+  const nuevaId = ventas.length + 1;
+
+  nuevaVenta.detalles.forEach((detalle) => {
+    setVentas((prev) => [
+      ...prev,
+      {
+        id: nuevaId,
+        fecha: nuevaVenta.fecha,
+        cliente: nuevaVenta.cliente,
+        producto: detalle.producto,
+        cantidad: detalle.cantidad,
+        precioUnitario: detalle.precio_unitario,
+      },
+    ]);
+  });
+};
+
 
   const handleCerrarSesion = () => {
     navigate('/');
@@ -35,32 +49,12 @@ const Ventas = () => {
             <BotonCerrarSesion texto="CERRAR SESION" onClick={handleCerrarSesion} />
         </section>
       </div>
-      <VentaForm onGuardar={handleGuardarVenta} />
-
-      <table className="ventas-table">
-        <thead>
-          <tr>
-            <th>Fecha</th>
-            <th>Cliente</th>
-            <th>Producto</th>
-            <th>Cantidad</th>
-            <th>Precio Unitario</th>
-            <th>Total</th>
-          </tr>
-        </thead>
-        <tbody>
-          {ventas.map((venta) => (
-            <tr key={venta.id}>
-              <td>{venta.fecha}</td>
-              <td>{venta.cliente}</td>
-              <td>{venta.producto}</td>
-              <td>{venta.cantidad}</td>
-              <td>${venta.precioUnitario}</td>
-              <td>${venta.cantidad * venta.precioUnitario}</td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
+      <section className="ventas-instrucciones">
+        <div>
+          <VentaForm onGuardar={handleGuardarVenta} />
+        </div>
+        
+      </section>
     </div>
   );
 };

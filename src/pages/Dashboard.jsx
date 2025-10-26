@@ -65,20 +65,20 @@ const Dashboard = () => {
 
       <section className="dashboard-grid">
         <Link to="/ventas" className="dashboard-card dashboard-link">
-          <h3>Ventas del mes</h3>
-          <p>$4.580.000</p>
+          <h3>Modulo Ventas</h3>
+          
         </Link>
 
         <Link to="/productos" className="dashboard-card dashboard-link">
-          <h3>Productos registrados</h3>
-          <p>128</p>
+          <h3>Gestion Productos</h3>
+          
         </Link>
 
         {rol === 'administrador' && (
           <>
             <Link to="/compras" className="dashboard-card dashboard-link">
-              <h3>Compras recientes</h3>
-              <p>24</p>
+              <h3>Modulo Compras</h3>
+              
             </Link>
             <Link to="/inventario" className="dashboard-card dashboard-link">
               <h3>Inventario</h3>
@@ -86,14 +86,11 @@ const Dashboard = () => {
              
             <Link to="/reportes" className="dashboard-card wide dashboard-link">
               <h3>Recomendaciones de compra</h3>
-              <ul>
-                <li>💡 Reponer “Papel térmico”</li>
-                <li>💡 Comprar más “Botellas PET 500ml”</li>
-              </ul>
+              
             </Link>
             <Link to="/usuarios" className="dashboard-card dashboard-link">
               <h3>Gestion de Usuarios</h3>
-              <p>24</p>
+              
             </Link>
           </>
         )}

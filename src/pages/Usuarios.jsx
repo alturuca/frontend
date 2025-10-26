@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { getUsuarios } from '../services/usuarios';
 import FormularioUsuario from '../components/FormularioUsuario';
+import BotonCerrarSesion from '../components/BotonCerrarSesion';
+
 
 function Usuarios() {
   const [usuarios, setUsuarios] = useState([]);
@@ -28,8 +30,26 @@ function Usuarios() {
     cargarUsuarios();
   };
 
-  return (
+  const handleCerrarSesion = () => {
+
+    // eslint-disable-next-line no-undef
+    navigate('/');
+
+  };
+
+  const handleIrTablero = () => {
+    // eslint-disable-next-line no-undef
+    navigate('/dashboard');
+
+  }
+
+  return (    
+
     <div>
+      <section className='header-container-botones'>
+            <BotonCerrarSesion texto="TABLERO" onClick={handleIrTablero} />
+            <BotonCerrarSesion texto="CERRAR SESION" onClick={handleCerrarSesion} />
+      </section>
       <FormularioUsuario
         usuarioSeleccionado={usuarioEditando}
         onUsuarioActualizado={handleActualizar}
