@@ -29,6 +29,7 @@ const VentaForm = ({ onGuardar }) => {
       const res = await axios.get(`${PRODUCTOS_API}${cleanSku}/`, {
         headers: { Authorization: `Bearer ${token}` },
       });
+      
       setProductoActual(res.data);
     } catch (error) {
       console.error('Error al buscar producto:', error);

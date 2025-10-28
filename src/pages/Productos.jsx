@@ -92,11 +92,13 @@ const Productos = () => {
         </section>
       </div>
 
-      <ProductForm
-        onGuardar={handleGuardar}
-        producto={productoActual}
-        modoEdicion={modoEdicion}
-      />
+      <div className="producto-form-container">
+        <ProductForm
+          onGuardar={handleGuardar}
+          producto={productoActual}
+          modoEdicion={modoEdicion}
+        />
+      </div>
 
       <table className="productos-table">
         <thead>
