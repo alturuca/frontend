@@ -106,10 +106,8 @@ const Productos = () => {
             <th>SKU</th>
             <th>Nombre</th>
             <th>Descripción</th>
-            <th>Precio Compra</th>
-            <th>Precio Venta</th>
-            <th>Stock</th>
             <th>Acciones</th>
+           
           </tr>
         </thead>
         <tbody>
@@ -118,9 +116,7 @@ const Productos = () => {
               <td>{producto.sku}</td>
               <td>{producto.nombre}</td>
               <td>{producto.descripcion}</td>
-              <td>${parseFloat(producto.precio_compra).toFixed(2)}</td>
-              <td>${parseFloat(producto.precio_venta).toFixed(2)}</td>
-              <td>{producto.stock}</td>
+              
               <td>
                 <button onClick={() => handleEditar(producto)}>✏️</button>
                 <button onClick={() => handleEliminar(producto.sku)}>🗑️</button>

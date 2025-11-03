@@ -7,7 +7,9 @@ import axios from 'axios';
 
 const API_URL = 'http://127.0.0.1:8000/api/v1/productos/';
 
+
 const Inventario = () => {
+  
   const [productos, setProductos] = useState([]);
   const navigate = useNavigate();
 
@@ -18,6 +20,7 @@ const fetchProductos = async () => {
           Authorization: `Bearer ${localStorage.getItem('access_token')}`,
         },
       });
+      console.log('Productos obtenidos:', res.data);
       setProductos(res.data);
     } catch (error) {
       console.error('Error al obtener productos:', error);
@@ -25,8 +28,10 @@ const fetchProductos = async () => {
   };
 
 
+
    useEffect(() => {
       fetchProductos();
+      
     }, []);
 
   const handleCerrarSesion = () => {

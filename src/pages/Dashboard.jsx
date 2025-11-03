@@ -85,7 +85,7 @@ const Dashboard = () => {
             </Link>
              
             <Link to="/reportes" className="dashboard-card wide dashboard-link">
-              <h3>Recomendaciones de compra</h3>
+              <h3>Reportes</h3>
               
             </Link>
             <Link to="/usuarios" className="dashboard-card dashboard-link">

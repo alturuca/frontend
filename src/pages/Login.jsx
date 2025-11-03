@@ -116,12 +116,7 @@ const Login = () => {
 
         {message && <p className="message-text">{message}</p>}
 
-        <div className="links">
-          <a href="#">Forgot password?</a>
-          <p>
-            New to StocklyX? <a href="#">Create account</a>
-          </p>
-        </div>
+        
       </div>
       <div className="login-image">
         <img src="/Bodega.png" alt="Crecimiento en ventas" />

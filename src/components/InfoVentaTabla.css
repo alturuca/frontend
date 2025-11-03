@@ -1,0 +1,40 @@
+.venta-container {
+  display: flex;
+  gap: 30px;
+  align-items: flex-start;
+  flex-wrap: wrap; /* Para que se acomoden en columna si no caben */
+  
+}
+
+
+.table-infoventas {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: #fff;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+th, td {
+  border: 1px solid #cccccc;
+  padding: 8px;
+  text-align: left;
+}
+
+thead {
+  background-color: #f5f5f5;
+}
+
+.total-label {
+  display: block;
+  margin-bottom: 10px;
+  font-size: 2rem;
+  color: #333;
+  padding: 5px;
+}
+
+table th {
+  background-color: #0078d4;
+  color: white;
+}

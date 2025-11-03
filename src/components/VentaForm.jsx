@@ -58,7 +58,8 @@ const VentaForm = ({ onGuardar }) => {
 
     setDetalles([...detalles, detalle]);
 
-    // Actualizar stock en backend
+    // Actualizar stock 
+    // en backend
     const nuevoStock = productoActual.stock - cantidadInt;
     const token = localStorage.getItem('access_token');
     axios.put(`${PRODUCTOS_API}${productoActual.sku}/`, {
@@ -102,6 +103,9 @@ const VentaForm = ({ onGuardar }) => {
           'Content-Type': 'application/json',
         },
       });
+      
+      console.log('Factura registrada:', res.data);
+
 
       onGuardar(res.data);
 
@@ -148,7 +152,7 @@ const VentaForm = ({ onGuardar }) => {
               <input type="text" value={productoActual.nombre} readOnly />
             </div>
             <div className="form-group">
-              <label><strong>Precio unitario:</strong></label>
+              <label><strong>Precio Venta:</strong></label>
               <input type="text" value={`${formatearCOP(productoActual.precio_venta)}`} readOnly />
             </div>
             <div className="form-group">

@@ -9,6 +9,7 @@ import Compras from './pages/Compras';
 import Usuarios from './pages/Usuarios';
 import Reportes from './pages/Reportes';
 import Inventario from './pages/Inventario';
+import InfoVentas from './pages/InfoVentas';
 /*import FormularioUsuario from './components/FormularioUsuario';*/
 
 import './App.css'
@@ -30,6 +31,7 @@ function App() {
         <Route path="/reportes" element={<Reportes/>} />
         <Route path="/usuarios" element={<Usuarios/>} />
         <Route path="/inventario" element={<Inventario/>} />
+        <Route path="/infoventas" element={<InfoVentas/>} />
       </Routes>
     </Router>
 
