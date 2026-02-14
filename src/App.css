@@ -24,3 +24,21 @@
   color: white;
 }
 
+#root {
+  width: 100%;
+  margin: 0 auto;
+  padding: 0;
+  text-align: center;
+}
+
+.main-layout {
+  display: flex;
+  flex-direction: column; /* En móvil, todo hacia abajo */
+  min-height: 100vh;
+}
+
+@media (min-width: 768px) {
+  .main-layout {
+    flex-direction: row; /* En escritorio, menú a la izquierda o layout horizontal */
+  }
+}

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import './login.css';
+import { useNavigate } from 'react-router-dom'
+import './Login.css'
 import StocklyXLogo from '../components/StocklyXLogo';
 
 const Login = () => {

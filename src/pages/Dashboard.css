@@ -10,22 +10,26 @@
   justify-content: space-between;
   align-items: center;
   margin-bottom: 20px;
-  
+  flex-wrap: wrap; /* Permite que los botones bajen si no hay espacio */
+  gap: 1rem;
 }
 .header-container-botones{
   display: flex;
   gap: 10px;
+  flex-wrap: wrap;
 
 }
 .dashboard-header h1 {
   font-size: 2rem;
   margin-bottom: 0.5rem;
   color: #2c3e50;
+  margin-top: 0;
 }
 
 .dashboard-header p {
   color: #555;
   margin-bottom: 2rem;
+  width: 100%;
 }
 
 .dashboard-grid {
@@ -52,6 +56,44 @@
   color: #333;
 }
 
+/* --- AJUSTES RESPONSIVE --- */
+
+/* Tablet y Escritorio pequeño */
+@media (min-width: 768px) {
+  .dashboard-card.wide {
+    grid-column: span 2; /* Solo es doble en pantallas grandes */
+  }
+}
+
+/* Móviles y Tablets pequeñas */
+@media (max-width: 767px) {
+  .dashboard-container {
+    padding: 1rem; /* Menos espacio en los bordes */
+  }
+
+  .dashboard-header {
+    flex-direction: column; /* Apilar título y botones */
+    align-items: flex-start;
+  }
+
+  .header-container-botones {
+    width: 100%;
+    justify-content: flex-start;
+  }
+
+  .dashboard-header h1 {
+    font-size: 1.6rem;
+  }
+
+  /* Forzamos a que las tarjetas 'wide' ocupen solo 1 columna en móvil */
+  .dashboard-card.wide {
+    grid-column: span 1;
+  }
+  
+  .dashboard-grid {
+    grid-template-columns: 1fr; /* Una sola columna para evitar errores de ajuste */
+  }
+}
 .dashboard-card.wide {
   grid-column: span 2;
 }
